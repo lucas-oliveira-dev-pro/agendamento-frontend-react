@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { margin: 0; }
+.page {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  padding: 24px; background:
+  radial-gradient(circle at top left, rgba(25,118,210,.12), transparent 35%), #f5f7fb;
+}
+.login-card {
+  width: 100%; max-width: 430px; padding: 32px;
+  border: 1px solid rgba(0,0,0,.08);
+}
+.brand { text-align: center; }
+.brand-icon {
+  width: 58px; height: 58px; margin: 0 auto 14px; display: grid; place-items: center;
+  border-radius: 16px; background: #1976d2; color: white; font-size: 28px; font-weight: 800;
+}
+.mode-buttons { margin-top: 26px; }
+@media (max-width: 480px) {
+  .page { padding: 14px; }
+  .login-card { padding: 24px 18px; }
+}
