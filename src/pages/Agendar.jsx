@@ -43,12 +43,15 @@ export default function Agendar() {
       selectedClient.massage_count > 1
     ) {
       setIsPackageAvailable(true);
-      setForm((current) => ({ ...current, massage_count: 1, value_cents: 0, address: selectedClient.address }));
+      setForm((current) => ({
+        ...current,
+        massage_count: 1,
+        value_cents: 0,
+        address: selectedClient.address,
+        is_package: true,
+      }));
     }
-    if (
-      selectedClient &&
-      selectedClient.id
-    ) {
+    if (selectedClient && selectedClient.id) {
       setForm((current) => ({ ...current, address: selectedClient.address }));
     }
   }, [clientOptions, selectedClient]);
@@ -98,7 +101,7 @@ export default function Agendar() {
 
   function change(e) {
     const { name, value } = e.target;
-    if(name === "is_package" && value === "true") {
+    if (name === "is_package" && value === "true") {
       setForm((current) => ({ ...current, [name]: value, value_cents: 0 }));
       return;
     }

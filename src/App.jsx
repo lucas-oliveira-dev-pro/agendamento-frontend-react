@@ -21,6 +21,7 @@ import { login, register } from "./api";
 import TodosAgendamentos from "./pages/TodosAgendamentos";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [mode, setMode] = useState("login");
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
@@ -38,7 +39,7 @@ function LoginPage() {
     setForm((current) => ({ ...current, [name]: value }));
   }
 
-  const handleLogin = async () => {
+  const handleLogin = async (email, password) => {
     try {
       const response = await login(email, password);
 
@@ -82,7 +83,7 @@ function LoginPage() {
       setLoading(true);
       const data = isRegister
         ? await register(form.name.trim(), form.email.trim(), form.password)
-        : await handleLogin();
+        : await handleLogin(form.email.trim(), form.password.trim());
 
       localStorage.setItem("auth_token", data.token);
       localStorage.setItem("auth_user", JSON.stringify(data.user));
@@ -92,8 +93,10 @@ function LoginPage() {
           ? "Cadastro realizado com sucesso!"
           : "Login realizado com sucesso!",
       });
+      navigate('/')
       console.log("Autenticado:", data);
     } catch (error) {
+      console.log('error', error);
       setMessage({
         severity: "error",
         text:
