@@ -219,8 +219,15 @@ export default function Agendar() {
               renderOption={(props, option) => (
                 <Box component="li" {...props} key={option.id}>
                   <Box sx={{ width: "100%" }}>
-                    <Typography fontWeight={700}>{option.name}</Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography fontWeight={700} fontSize="1.1rem">
+                      {option.name}
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      fontSize="1rem"
+                    >
                       {option.phone || option.email || "Sem telefone/e-mail"}
                       {option.package_available
                         ? ` • ${option.massage_count} massagem(ns) no pacote`
@@ -235,6 +242,17 @@ export default function Agendar() {
                   label="Cliente"
                   placeholder="Digite o nome do cliente"
                   required
+                  sx={{
+                    "& .MuiInputLabel-root": {
+                      fontSize: "1.3rem",
+                    },
+                    "& .MuiInputBase-input": {
+                      fontSize: "1.3rem",
+                    },
+                    "& .MuiFormHelperText-root": {
+                      fontSize: "1rem",
+                    },
+                  }}
                   helperText={
                     selectedClient
                       ? selectedClient.package_available
@@ -249,7 +267,7 @@ export default function Agendar() {
                     endAdornment: (
                       <>
                         {searchingClients ? (
-                          <CircularProgress color="inherit" size={20} />
+                          <CircularProgress color="inherit" size={24} />
                         ) : null}
                         {params.InputProps.endAdornment}
                       </>
@@ -258,23 +276,42 @@ export default function Agendar() {
                 />
               )}
             />
+
             {isPackageAvailable && (
-              <Typography variant="h6" fontWeight={800} mb={2}>
+              <Typography
+                variant="h6"
+                fontWeight={800}
+                mb={2}
+                fontSize="1.3rem"
+              >
                 {selectedClient.massage_count - 1} massagens disponíveis
               </Typography>
             )}
+
             <TextField
               label="Endereço"
               name="address"
               value={form.address}
               onChange={change}
               required
+              sx={{
+                "& .MuiInputLabel-root": {
+                  fontSize: "1.3rem",
+                },
+                "& .MuiInputBase-input": {
+                  fontSize: "1.3rem",
+                },
+                "& .MuiFormHelperText-root": {
+                  fontSize: "1rem",
+                },
+              }}
               helperText={
                 selectedClient?.address
                   ? "Endereço preenchido a partir do cadastro do cliente."
                   : ""
               }
             />
+
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <TextField
                 label="Data"
@@ -285,7 +322,16 @@ export default function Agendar() {
                 required
                 fullWidth
                 InputLabelProps={{ shrink: true }}
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    fontSize: "1.3rem",
+                  },
+                  "& .MuiInputBase-input": {
+                    fontSize: "1.3rem",
+                  },
+                }}
               />
+
               <TextField
                 label="Horário"
                 name="start_time"
@@ -295,8 +341,17 @@ export default function Agendar() {
                 required
                 fullWidth
                 InputLabelProps={{ shrink: true }}
+                sx={{
+                  "& .MuiInputLabel-root": {
+                    fontSize: "1.3rem",
+                  },
+                  "& .MuiInputBase-input": {
+                    fontSize: "1.3rem",
+                  },
+                }}
               />
             </Stack>
+
             <TextField
               disabled={isPackageAvailable}
               select
@@ -304,10 +359,24 @@ export default function Agendar() {
               name="is_package"
               value={String(form.is_package)}
               onChange={change}
+              sx={{
+                "& .MuiInputLabel-root": {
+                  fontSize: "1.3rem",
+                },
+                "& .MuiSelect-select": {
+                  fontSize: "1.3rem",
+                },
+              }}
             >
-              <MenuItem value="false">Não</MenuItem>
-              <MenuItem value="true">Sim</MenuItem>
+              <MenuItem value="false" sx={{ fontSize: "1.3rem" }}>
+                Não
+              </MenuItem>
+
+              <MenuItem value="true" sx={{ fontSize: "1.3rem" }}>
+                Sim
+              </MenuItem>
             </TextField>
+
             <TextField
               disabled={isPackageAvailable || !form.is_package}
               label="Quantidade de massagens"
@@ -317,7 +386,16 @@ export default function Agendar() {
               onChange={change}
               inputProps={{ min: 1 }}
               required
+              sx={{
+                "& .MuiInputLabel-root": {
+                  fontSize: "1.3rem",
+                },
+                "& .MuiInputBase-input": {
+                  fontSize: "1.3rem",
+                },
+              }}
             />
+
             <TextField
               disabled={isPackageAvailable}
               label="Valor (centavos)"
@@ -327,8 +405,20 @@ export default function Agendar() {
               onChange={change}
               inputProps={{ min: 0 }}
               required
+              sx={{
+                "& .MuiInputLabel-root": {
+                  fontSize: "1.3rem",
+                },
+                "& .MuiInputBase-input": {
+                  fontSize: "1.3rem",
+                },
+                "& .MuiFormHelperText-root": {
+                  fontSize: "1rem",
+                },
+              }}
               helperText="Ex.: R$ 100,00 = 10000 centavos"
             />
+
             {noResults && (
               <Alert severity="info" icon={<PersonAddAlt1RoundedIcon />}>
                 Nenhum cliente foi encontrado. Ao clicar em{" "}

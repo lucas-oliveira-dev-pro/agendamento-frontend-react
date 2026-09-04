@@ -210,7 +210,7 @@ function AppointmentItem({ item, paying, onPay, onCancel }) {
           <Typography variant="h6" fontWeight={800}>
             {item.start_time?.slice(0, 5)}
           </Typography>
-          <Typography fontWeight={700}>{clientName}</Typography>
+          <Typography variant="h6" fontWeight={700}>{clientName}</Typography>
           {isPackage && <Chip label="Pacote" size="small" />}
           {item.status === "cancelado" && (
             <Chip label="Cancelado" size="small" color="error" />
