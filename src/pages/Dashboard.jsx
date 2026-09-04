@@ -175,7 +175,7 @@ export default function Dashboard() {
           <CircularProgress />
         </Box>
       ) : appointments.length === 0 ? (
-        <Paper className="empty-card" elevation={0}>
+        <Paper style={{ padding: '1rem'}} className="empty-card" elevation={0}>
           <Typography variant="h6" fontWeight={700}>
             Nenhum agendamento hoje
           </Typography>
@@ -227,6 +227,7 @@ function AppointmentItem({ item, paying, onPay, onCancel }) {
       ) : item.status !== "cancelado" && (
         <div style={{ display: "flex", justifyContent: "flex-end", padding: '0.5rem' }}>
           <Button
+          style={{marginRight: '0.4rem'}}
             variant="contained"
             color="success"
             disabled={paying}

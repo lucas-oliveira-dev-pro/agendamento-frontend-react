@@ -187,16 +187,17 @@ export default function Agendar() {
       >
         Voltar
       </Button>
-      <Typography variant="h4" fontWeight={800} mb={2}>
-        Novo agendamento
-      </Typography>
+
       <Paper elevation={0} className="form-card">
         {message && (
           <Alert severity={message.severity} sx={{ mb: 2 }}>
             {message.text}
           </Alert>
         )}
-        <Box component="form" onSubmit={submit}>
+        <Box padding={2} component="form" onSubmit={submit}>
+          <Typography variant="h4" fontWeight={800} mb={2}>
+            Novo agendamento
+          </Typography>
           <Stack spacing={2}>
             <Autocomplete
               options={clientOptions}
