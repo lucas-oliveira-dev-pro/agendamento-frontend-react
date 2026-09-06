@@ -40,7 +40,7 @@ export default function Agendar() {
     if (
       selectedClient &&
       selectedClient.id &&
-      selectedClient.massage_count > 1
+      selectedClient.massage_count >= 1
     ) {
       setIsPackageAvailable(true);
       setForm((current) => ({
@@ -53,6 +53,9 @@ export default function Agendar() {
     }
     if (selectedClient && selectedClient.id) {
       setForm((current) => ({ ...current, address: selectedClient.address }));
+    }
+    if(selectedClient && !selectedClient.id) {
+      setIsPackageAvailable(false);
     }
   }, [clientOptions, selectedClient]);
   useEffect(() => {
@@ -177,7 +180,6 @@ export default function Agendar() {
     !searchingClients &&
     clientOptions.length === 0 &&
     !selectedClient;
-  console.log("@@@", form.is_package, form.is_package === true);
   return (
     <Box>
       <Button
@@ -277,14 +279,14 @@ export default function Agendar() {
               )}
             />
 
-            {isPackageAvailable && (
+            {isPackageAvailable && selectedClient.massage_count && (
               <Typography
                 variant="h6"
                 fontWeight={800}
                 mb={2}
                 fontSize="1.3rem"
               >
-                {selectedClient.massage_count - 1} massagens disponíveis
+                {selectedClient.massage_count} massagens disponíveis
               </Typography>
             )}
 
